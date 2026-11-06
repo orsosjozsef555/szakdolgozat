@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Milton Friedman Egyetem hivatalos weboldala. Ismerd meg alapképzéseinket, mesterképzéseinket, felvételi információinkat és a hallgatói életet!">
+    <title>Milton Friedman Egyetem</title>
+    <link rel="preload" href="fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="images/webTDKb-mobile.webp" as="image" media="(max-width: 767px)" fetchpriority="high" type="image/webp">
+    <link rel="preload" href="images/webTDKb.webp" as="image" media="(min-width: 768px)" fetchpriority="high" type="image/webp">
+	<!--link rel="preload" href="style.min.css" as="style"-->
+	<link rel="stylesheet" href="style.min.css" media="print" onload="this.media='all'">
+	<!--link rel="stylesheet" href="style.min.css"-->
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+		<style>
+		@font-face{font-family:'Montserrat';src:url('fonts/Montserrat-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
+		body{background-color:#fff}
+        .white-icon{filter:brightness(0) invert(1);display:block}
+        .container{width:100%;max-width:1400px;margin:0 auto;padding:0 20px}
+        .top-bar{background-color:#003366;color:#fff;font-size:11px;font-weight:600}
+        .top-bar-content{display:flex;justify-content:space-between;align-items:center;height:38px}
+        .top-left{display:flex;align-items:center;gap:15px}
+        .top-left a.email-link{color:#fff;text-decoration:none;display:flex;align-items:center;gap:6px;letter-spacing:.5px}
+        .social-icons{display:flex;gap:10px;margin-left:5px}
+        .social-icons a{color:#fff;text-decoration:none;font-size:13px}
+        .top-right .utility-nav ul{display:flex;list-style:none;gap:15px;align-items:center}
+        .top-right .utility-nav a{color:#fff;text-decoration:none;letter-spacing:.5px;display:flex;align-items:center;gap:5px;transition:opacity .2s ease}
+        .top-right .utility-nav a:hover{opacity:.8}
+        .top-right .utility-nav a img{width:16px;height:16px;display:block}
+        .main-header{background-color:#fff;border-bottom:1px solid #e0e0e0;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.05);transition:all .3s ease}
+        .header-content{display:flex;justify-content:space-between;align-items:center;height:90px;transition:height .3s ease}
+        .brand-logos .logo-link{display:flex;align-items:center;gap:15px;text-decoration:none}
+        .brand-logos img.main-logo{height:50px;width:auto;transition:height .3s ease}
+        .brand-logos img.sub-logo{height:40px;width:auto;transition:height .3s ease}
+        .main-header.scrolled .header-content{height:50px}
+        .main-header.scrolled img.main-logo{height:32px}
+        .main-header.scrolled img.sub-logo{height:25px}
+        .main-nav ul{display:flex;list-style:none;align-items:center;gap:20px}
+        .main-nav a{color:#003366;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.5px;transition:color .2s ease}
+        .main-nav a:hover{color:#0055a5}
+        .main-nav li.highlight-btn a{background-color:#0c71c3;color:#fff;padding:12px 18px;font-weight:800;transition:padding .3s ease;border-radius:0}
+        .main-header.scrolled .main-nav li.highlight-btn a{padding:8px 14px}
+        .main-nav li.highlight-btn a:hover{background-color:#09589a}
+        .lang-selector img.flag-icon{width:20px;height:auto;display:block}
+        .hero-slider{position:relative;width:100%;height:520px;overflow:hidden;background-color:#1a1a1a}
+        .slides-container{position:relative;width:100%;height:100%}
+        .slide{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;visibility:hidden;transition:opacity .8s ease-in-out,visibility .8s ease-in-out;display:flex;align-items:center;justify-content:center}
+        .slide.active{opacity:1;visibility:visible}
+        .slide-bg{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover;background-position:center;transform:scale(1.05);transition:transform 6s ease}
+        .slide.active .slide-bg{transform:scale(1)}
+        .slide-1{background-image:url('images/webTDKb-mobile.webp')}
+        .slide-2{background-image:url('images/fekvo_diakok-mobile.webp')}
+        .slide-3{background-image:url('images/milton_diplomaoszto-25-mobile.webp')}
+        @media(min-width:768px){.slide-1{background-image:url('images/webTDKb.webp')}.slide-2{background-image:url('images/fekvo_diakok.webp')}.slide-3{background-image:url('images/milton_diplomaoszto-25.webp')}}
+        .slide-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45)}
+        .slide-content{position:relative;z-index:2;text-align:center;color:#fff;max-width:900px;padding:0 20px}
+        .slide-content h2{font-size:52px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:15px;line-height:1.1;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+        .slide-content p{font-size:24px;font-style:italic;font-weight:400;margin-bottom:30px;color:#f0f0f0;text-shadow:0 2px 5px rgba(0,0,0,.5)}
+        .btn-slider{display:inline-block;background-color:#0c71c3;color:#fff;padding:12px 30px;font-size:13px;font-weight:800;text-decoration:none;letter-spacing:1px;transition:background-color .3s ease,transform .2s ease;border-radius:2px}
+        .btn-slider:hover{background-color:#09589a;transform:translateY(-2px)}
+        .slide-bg picture,.slide-bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+        .slider-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.3);color:#fff;border:none;font-size:22px;padding:16px 14px;cursor:pointer;z-index:10;transition:background .3s ease}
+        .slider-btn:hover{background:rgba(0,0,0,.7)}
+        .prev-btn{left:15px}.next-btn{right:15px}
+        .slider-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+        .dot{width:10px;height:10px;background-color:rgba(255,255,255,.5);border-radius:50%;cursor:pointer;transition:background-color .3s ease,transform .3s ease}
+        .dot.active{background-color:#fff;transform:scale(1.2)}
+        @media(max-width:768px){
+            .container{padding:0 15px}
+            .header-content{flex-direction:column;height:auto;padding:10px 0;gap:10px}
+            .main-nav ul{flex-wrap:wrap;justify-content:center;gap:10px}
+            .social-icons a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:10px}
+            .top-right .utility-nav ul{gap:8px;flex-wrap:wrap}
+            .top-right .utility-nav a{display:inline-flex;align-items:center;min-height:44px;padding:8px 10px}
+            .main-nav a{display:inline-flex;align-items:center;min-height:44px;padding:10px 12px}
+            .hero-slider{height:380px}
+            .slide-content h2{font-size:24px;margin-bottom:10px}
+            .slide-content p{font-size:16px;margin-bottom:15px}
+        }
+	</style>
+</head>
+<body>
+    <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Milton Friedman Egyetem</h1>    
+    <nav class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-left">
+                <a href="mailto:mail@uni-milton.hu" class="email-link">
+                    <img src="images/icons/envelope.svg" class="white-icon" alt="Envelope" width="16" height="16"> MAIL@UNI-MILTON.HU
+                </a>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><img src="images/icons/facebook.svg" class="white-icon" alt="Facebook" width="16" height="16"></a>
+                    <a href="#" aria-label="Instagram"><img src="images/icons/instagram.svg" class="white-icon" alt="Instagram" width="16" height="16"></a>
+                </div>
+            </div>
+            <div class="top-right">
+                <nav class="utility-nav">
+                    <ul>
+                        <li><a href="#"><img src="images/icons/user.svg" class="white-icon" alt="User" width="16" height="16"> NEPTUN – OKTATÓ</a></li>
+                        <li><a href="#"><img src="images/icons/graduation.svg" class="white-icon" alt="Graduation" width="16" height="16"> NEPTUN – HALLGATÓ</a></li>
+                        <li><a href="#">MILT-ON</a></li>
+                        <li><a href="#">MOODLE</a></li>
+                        <li><a href="#">SAJTÓSZOBA</a></li>
+                        <li><a href="#">GALÉRIA</a></li>
+                        <li><a href="#">KONFERENCIÁK</a></li>
+                        <li><a href="#">AKADÁLYMENTES NÉZET</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </nav>
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="brand-logos">
+                <a href="/" class="logo-link">
+                    <img src="images/szechenyi-plusz-64px.webp" alt="Széchenyi Terv Plusz" class="sub-logo" width="64" height="64">
+                    <picture>
+						<source media="(max-width: 768px)" srcset="images/Milton_attetszo_mobile.webp">
+						<img src="images/Milton_attetszo.webp" alt="Milton Friedman Egyetem Logó" class="main-logo" width="200" height="60">
+					</picture>
+                    <img src="images/szechenyi-blokk-64px.webp" alt="Széchenyi 2020" class="sub-logo" width="64" height="64">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li class="highlight-btn"><a href="#">FELVÉTELI 2026</a></li>
+                    <li><a href="#">EGYETEMÜNKRŐL</a></li>
+                    <li><a href="#">KÉPZÉSEINK</a></li>
+                    <li><a href="#">FELVÉTELIZŐKNEK</a></li>
+                    <li><a href="#">HALLGATÓKNAK</a></li>
+                    <li><a href="#">ERASMUS</a></li>
+                    <li class="lang-selector">
+                        <a href="#" aria-label="Nyelvválasztás">
+                            <img src="images/magyar.webp" alt="Magyar" class="flag-icon" width="20" height="15">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="hero-slider">
+        <div class="slides-container">
+            <div class="slide active">
+                <picture class="slide-bg">
+					<source media="(min-width: 767px)" srcset="images/webTDKb.webp" >
+					<img src="images/webTDKb-mobile.webp" alt="38. ORSZÁGOS DIÁKKÖRI KONFERENCIA" fetchpriority="high">
+                </picture>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h2>38. ORSZÁGOS DIÁKKÖRI KONFERENCIA</h2>
+                    <p>Fontos információk a jelentkezésről</p>
+                    <a href="#" class="btn-slider">ELOLVASOM</a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-bg slide-2"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h2>MILTON GENERÁCIÓK EGYETEME</h2>
+                    <p>Legyél az, ami szeretnél lenni!</p>
+                    <a href="#" class="btn-slider">TOVÁBB</a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-bg slide-3"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h2>FELVÉTELI 2026</h2>
+                    <p>Ismerd meg képzéseinket és csatlakozz hozzánk!</p>
+                    <a href="#" class="btn-slider">KÉPZÉSEK</a>
+                </div>
+            </div>
+        </div>
+        <button class="slider-btn prev-btn" id="prevBtn" aria-label="Előző dia">
+            <img src="images/icons/chevron-left.svg" class="white-icon" alt="Chevron-left" width="16" height="16">
+        </button>
+        <button class="slider-btn next-btn" id="nextBtn" aria-label="Következő dia">
+            <img src="images/icons/chevron-right.svg" class="white-icon" alt="Chevron-right" width="16" height="16">
+        </button>
+        <div class="slider-dots" id="dotsContainer">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+        </div>
+    </section>
+    <main class="main-content-section">
+        <div class="container main-layout">            
+            <div class="content-left">                
+                <div class="news-section">
+                    <h2 class="section-title">HÍREINK</h2>                    
+                    <div class="news-grid">
+                        <article class="news-card">
+                            <div class="news-image">
+                                <img src="images/hirek/13-500x375.webp" alt="MAGYAR KÖZGAZDASÁGI TÁRSASÁG KÖVETKEZŐ RENDEZVÉNYE" width="500" height="375" loading="lazy">
+                            </div>
+                            <div class="news-content">
+                                <h3>A MAGYAR KÖZGAZDASÁGI TÁRSASÁG KÖVETKEZŐ RENDEZVÉNYE</h3>
+                            </div>
+                        </article>
+                        <article class="news-card">
+                            <div class="news-image">
+                                <img src="images/hirek/konfivektor.webp" alt="ÚJRA ERASMUS NAPOK AZ EGYETEMEN" width="500" height="375" loading="lazy">
+                            </div>
+                            <div class="news-content">
+                                <h3>ÚJRA ERASMUS NAPOK AZ EGYETEMEN</h3>
+                            </div>
+                        </article>
+                        <article class="news-card">
+                            <div class="news-image">
+                                <img src="images/hirek/Erasmus-nap-500x333.webp" alt="ÜNNEPÉLYES TANÉVNYITÓ A MILTONON" width="500" height="333" loading="lazy">
+                            </div>
+                            <div class="news-content">
+                                <h3>ÜNNEPÉLYES TANÉVNYITÓ A MILTONON</h3>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="more-news-btn-wrapper">
+                        <a href="#" class="btn-more-news">TOVÁBBI HÍREINK <img src="images/icons/chevron-right.svg" class="white-icon" alt="Chevron-right" width="16" height="16"></a>
+                    </div>
+                </div>
+                <div class="intro-section">
+                    <div class="intro-grid">                        
+                        <div class="intro-card intro-quote-card">
+                            <p class="quote-text">A sikeresség kulcsa a változásokhoz való gyors alkalmazkodás képessége.</p>
+                            <p class="intro-desc">
+                                A Milton Friedman Egyetem törekszik olyan képzéseket, programokat indítani, melyek egyaránt átadják az elméleti ismereteket, a praktikus tudást, és a gyakorlatorientált gondolkodásmódot.
+                            </p>
+                            <div class="intro-logo">
+                                <img src="images/Milton_attetszo.webp" alt="Milton Friedman Egyetem" width="140" height="42" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="intro-card">
+                            <div class="intro-image">
+                                <img src="images/lehetsz.webp" alt="Lehetsz - Milton" width="300" height="160" loading="lazy">
+                            </div>
+                            <h3>A JÖVŐ FELSŐOKTATÁSA</h3>
+                            <p>
+                                A hallgatók a diploma megszerzése után olyan készségekre tesznek szert, amelyek a gazdasági szférában elvárások. Olyan tudást adunk át, amelyre építeni lehet, és folyamatosan fejlődhet.
+                            </p>
+                        </div>
+                        <div class="intro-card">
+                            <div class="intro-image">
+                                <img src="images/generacio.webp" alt="Generációk Egyeteme" width="300" height="160" loading="lazy">
+                            </div>
+                            <h3>GENERÁCIÓK EGYETEME</h3>
+                            <p>
+                                Körünkben élethosszig tartó tanulásra és közösségi élményekre van lehetőség az alap- és mesterképzéseken túl a Szenior Akadémián is.
+                            </p>
+                        </div>
+                    </div>
+                    <p class="video-prompt">ISMERJ MEG MINKET, KATTINTS A KÉPRE A VIDEÓÉRT!</p>
+                </div>
+                <div class="video-cards-grid">
+                    <div class="video-card">
+                        <h4>KAMPUSZ TÚRA A MILTON-ON!</h4>
+                        <div class="video-thumbnail">
+                            <img src="images/campusz-258x200.webp" alt="Kampusz túra a Milton-on" width="258" height="200" loading="lazy">
+                            <div class="play-icon"><img src="images/icons/play.svg" class="white-icon" alt="Play" width="16" height="16"></div>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <h4>HALLGATÓI ÉLET A MILTON-ON</h4>
+                        <div class="video-thumbnail">
+                            <img src="images/hallgatoi_elet.webp" alt="Hallgatói élet a Milton-on" width="258" height="200" loading="lazy">
+                            <div class="play-icon"><img src="images/icons/play.svg" class="white-icon" alt="Play" width="16" height="16"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="content-right stats-sidebar">
+                <div class="stat-item">
+                    <span class="stat-number">13</span>
+                    <span class="stat-label">alapképzési szak</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">mesterképzési szak</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">felsőoktatási szakképzés</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">30+</span>
+                    <span class="stat-label">szakirány</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">tudományterület</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5000+</span>
+                    <span class="stat-label">negyvenöt év feletti a kampuszon</span>
+                </div>
+            </aside>            
+        </div>
+    </main>
+    <section class="courses-section">
+        <div class="container">
+            <h2 class="main-title">KÉPZÉSEINK</h2>
+            <h3 class="sub-title">ISMERD MEG ALAPKÉPZÉSEINKET!</h3>
+            <div class="courses-grid">
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/EE-bg.webp" alt="Emberi erőforrások" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">EMBERI ERŐFORRÁSOK ALAPKÉPZÉSI SZAK</div>
+                </a>
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/GM-bg.webp" alt="Gazdálkodási és menedzsment" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">GAZDÁLKODÁSI ÉS MENEDZSMENT ALAPKÉPZÉSI SZAK</div>
+                </a>
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/gi-bg-1.webp" alt="Gazdaságinformatikus" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">GAZDASÁGINFORMATIKUS ALAPKÉPZÉSI SZAK</div>
+                </a>
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/KOM-bg-2.webp" alt="KOMMUNIKÁCIÓ" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">KOMMUNIKÁCIÓ ÉS MÉDIATUDOMÁNY ALAPKÉPZÉSI SZAK</div>
+                </a>
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/KSZ-bg-1.webp" alt="Közösségszervezés" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">KÖZÖSSÉGSZERVEZÉS ALAPKÉPZÉSI SZAK</div>
+                </a>
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/NG-bg-1.webp" alt="Nemzetközi gazdálkodás" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">NEMZETKÖZI GAZDÁLKODÁS ALAPKÉPZÉSI SZAK</div>
+                </a>
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/NT-bg-1.webp" alt="Nemzetközi tanulmányok" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">NEMZETKÖZI TANULMÁNYOK ALAPKÉPZÉSI SZAK</div>
+                </a>
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/PSZ-bg-1.webp" alt="Pénzügy és számvitel" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">PÉNZÜGY ÉS SZÁMVITEL ALAPKÉPZÉSI SZAK</div>
+                </a>
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/POL-bg-1.webp" alt="Politikatudományok" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">POLITIKATUDOMÁNYOK ALAPKÉPZÉSI SZAK</div>
+                </a>
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/DSC_0815.webp" alt="Repülőmérnöki" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">REPÜLŐMÉRNÖKI ALAPKÉPZÉSI SZAK</div>
+                </a>
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/SZB-bg-2.webp" alt="Szabad bölcsészet" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">SZABAD BÖLCSÉSZET ALAPKÉPZÉSI SZAK</div>
+                </a>
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/SZOC-bg-1.webp" alt="Szociológia" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">SZOCIOLÓGIA ALAPKÉPZÉSI SZAK</div>
+                </a>
+                <a href="#" class="course-card">
+                    <div class="course-image">
+                        <img src="images/kepzesek_alap/TAN-bg-1.webp" alt="Tanító" width="307" height="205" loading="lazy">
+                    </div>
+                    <div class="course-title">TANÍTÓ ALAPKÉPZÉSI SZAK</div>
+                </a>
+            </div>
+            <div class="course-group">
+                <hr class="section-divider">
+                <h3 class="sub-title">MESTERKÉPZÉSI SZAKOT KERESEL?</h3>
+                <div class="courses-grid">
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/kepzesek_mester/ANDR-MESTER-bg-1.webp" alt="Andragógia" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">ANDRAGÓGIA MESTERKÉPZÉSI SZAK</div>
+                    </a>
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/kepzesek_mester/KOM-MASTER-bg-1.webp" alt="Kommunikáció és médiatudomány" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">KOMMUNIKÁCIÓ ÉS MÉDIATUDOMÁNY MESTERKÉPZÉSI SZAK</div>
+                    </a>
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/kepzesek_mester/NG-MESTER-bg-1.webp" alt="Nemzetközi gazdaság és gazdálkodás" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">NEMZETKÖZI GAZDASÁG ÉS GAZDÁLKODÁS MESTERKÉPZÉSI SZAK</div>
+                    </a>
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/kepzesek_mester/NT-MASTER-bg-1.webp" alt="Nemzetközi tanulmányok" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">NEMZETKÖZI TANULMÁNYOK MESTERKÉPZÉSI SZAK</div>
+                    </a>
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/kepzesek_mester/POL-MASTER-bg-1.webp" alt="Politikatudomány" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">POLITIKATUDOMÁNY MESTERKÉPZÉSI SZAK</div>
+                    </a>
+                </div>
+            </div>
+            <div class="course-group">
+                <hr class="section-divider">
+                <h3 class="sub-title">FELSŐOKTATÁSI SZAKKÉPZÉS</h3>
+                <div class="courses-grid">
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/foksz/GI-FOKSZ-bg-1.webp" alt="Gazdaságinformatikus" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">GAZDASÁGINFORMATIKUS FELSŐOKTATÁSI SZAKKÉPZÉS</div>
+                    </a>
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/foksz/PSZ-FOKSZ-bg-1.webp" alt="Pénzügy és számvitel" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">PÉNZÜGY ÉS SZÁMVITEL FELSŐOKTATÁSI SZAKKÉPZÉS</div>
+                    </a>
+                </div>
+            </div>
+            <div class="course-group">
+                <hr class="section-divider">
+                <h3 class="sub-title">SZAKIRÁNYÚ TOVÁBBKÉPZÉSEK</h3>
+                <div class="courses-grid">
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/szakiranyu_t/trenerkepzes.webp" alt="Trend kepzes" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">FELNŐTTKÉPZÉSI KOMPETENCIAFEJLESZTŐ SPECIALISTA</div>
+                    </a>
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/szakiranyu_t/GYIK.webp" alt="GYIK képzés" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">GYERMEK- ÉS IFJÚSÁGADDIKTOLÓGIAI KONZULTÁNS</div>
+                    </a>
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/szakiranyu_t/mentalhealth.webp" alt="Mentalhealth" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">GYERMEK- ÉS IFJÚSÁG-MENTÁLHIGIÉNÉS KONZULTÁNS</div>
+                    </a>
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/szakiranyu_t/nbb.webp" alt="NB képzés" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">NEMZETBIZTONSÁG ÉS BIZTONSÁGPOLITIKA</div>
+                    </a>
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/szakiranyu_t/ICT-bg-1.webp" alt="ITC képzés" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">ICT BIZTONSÁGI SZAKÉRTŐ</div>
+                    </a>
+                    <a href="#" class="course-card">
+                        <div class="course-image">
+                            <img src="images/szakiranyu_t/PVAI.webp" alt="PVAI képzés" width="307" height="205" loading="lazy">
+                        </div>
+                        <div class="course-title">PROFESSZIONÁLIS VEZETŐI ASSZISZTENS ÉS IRODAVEZETŐ</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="students-section">
+        <div class="container">
+            <h2 class="main-title">HALLGATÓIKNAK</h2>            
+            <div class="students-layout">
+                <div class="students-text">
+                    <p>Egyetemünk akkor sikeres, ha Te sikeres vagy a tanulásban!</p>
+                    <p>Legyen szó házi dolgozatról, vagy épp kutatási anyag összeállításáról, könyvtárunk rendelkezésedre áll mind a szorgalmi időszak, mind a vizsgaidőszak során.</p>
+                </div>
+                <div class="students-cards">
+                    <a href="#" class="student-card">
+                        <div class="student-card-image">
+                            <img src="images/konyvtar.webp" alt="Könyvtár" width="300" height="200" loading="lazy">
+                        </div>
+                        <div class="student-card-title">KÖNYVTÁR INFORMÁCIÓK</div>
+                    </a>
+                    <a href="#" class="student-card">
+                        <div class="student-card-image">
+                            <img src="images/tanev_rend.webp" alt="Tanévrendje" width="300" height="200" loading="lazy">
+                        </div>
+                        <div class="student-card-title">TANÉV RENDJE</div>
+                    </a>
+                    <a href="#" class="student-card">
+                        <div class="student-card-image">
+                            <img src="images/neptun_logo.webp" alt="Neptun_belépés" width="300" height="200" loading="lazy">
+                        </div>
+                        <div class="student-card-title">NEPTUN BELÉPÉS</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="course-links-section">
+        <div class="container">
+            <h2 class="main-title">ISMERD MEG KÉPZÉSEINKET!</h2>
+            <div class="links-grid">
+                <div class="links-column">
+                    <h3>ALAPKÉPZÉSI SZAKOK</h3>
+                    <ul>
+                        <li><a href="#">Emberi erőforrások alapképzési szak</a></li>
+                        <li><a href="#">Gazdaságinformatikus alapképzési szak</a></li>
+                        <li><a href="#">Gazdálkodási és menedzsment alapképzési szak</a></li>
+                        <li><a href="#">Kommunikáció és médiatudomány alapképzési szak</a></li>
+                        <li><a href="#">Közösségszervezés alapképzési szak</a></li>
+                        <li><a href="#">Nemzetközi gazdálkodás alapképzési szak</a></li>
+                        <li><a href="#">Nemzetközi tanulmányok alapképzési szak</a></li>
+                        <li><a href="#">Pénzügy és számvitel alapképzési szak</a></li>
+                        <li><a href="#">Politikatudományok alapképzési szak</a></li>
+                        <li><a href="#">Repülőmérnöki alapképzési szak</a></li>
+                        <li><a href="#">Szabad bölcsészet alapképzési szak</a></li>
+                        <li><a href="#">Szociológia alapképzési szak</a></li>
+                        <li><a href="#">Tanító alapképzési szak</a></li>
+                    </ul>
+                </div>
+                <div class="links-column">
+                    <h3>MESTERKÉPZÉSI SZAKOK</h3>
+                    <ul>
+                        <li><a href="#">Andragógia mesterképzési szak</a></li>
+                        <li><a href="#">Kommunikáció és médiatudomány mesterképzési szak</a></li>
+                        <li><a href="#">Nemzetközi gazdaság és gazdálkodás mesterképzési szak</a></li>
+                        <li><a href="#">Nemzetközi tanulmányok mesterképzési szak</a></li>
+                        <li><a href="#">Politikatudomány mesterképzési szak</a></li>
+                    </ul>
+                    <h3 class="sub-column-title">FELSŐOKTATÁSI SZAKKÉPZÉS</h3>
+                    <ul>
+                        <li><a href="#">Gazdaságinformatikus felsőoktatási szakképzés</a></li>
+                        <li><a href="#">Pénzügy és számvitel felsőoktatási szakképzés</a></li>
+                    </ul>
+                </div>
+                <div class="links-column">
+                    <h3>SZAKIRÁNYÚ TOVÁBBKÉPZÉSEK</h3>
+                    <ul>
+                        <li><a href="#">Felnőttképzési kompetenciafejlesztő specialista</a></li>
+                        <li><a href="#">Gyermek- és ifjúságaddiktológiai konzultáns</a></li>
+                        <li><a href="#">Gyermek- és ifjúság-mentálhigiénés konzultáns</a></li>
+                        <li><a href="#">Professzionális vezetői asszisztens és irodavezető</a></li>
+                        <li><a href="#">Nemzetbiztonság és biztonságpolitika</a></li>
+                        <li><a href="#">ICT Biztonsági szakértő</a></li>
+                    </ul>
+                    <h3 class="sub-column-title">KOMPETENCIAFEJLESZTŐ KÉPZÉSEK</h3>
+                    <ul>
+                        <li><a href="#">Álláskeresési technikák, IT-készségek fejlesztése, Konfliktus és stressz-kezelés, Konfliktus és stressz-kezelési készségfejlesztés</a></li>
+                        <li><a href="#">Projektmenedzsment ismeretek, Sikeres ügyfélkezelési technikák, Vállalkozási ismeretek, Vezetői kompetenciák fejlesztése</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact-section">
+        <div class="container contact-grid">
+            <div class="contact-info">
+                <h2>SEGÍTHETÜNK?</h2>
+                <p class="contact-desc">
+                    Kérdésed merülne fel, esetleg csak érdeklődnél egy képzés iránt? Valamennyi elérhetőségünkön keresztül kollégáink állnak rendelkezésedre!
+                </p>
+                <ul class="contact-details">
+                    <li>
+                        <img src="images/icons/location.svg" class="white-icon" alt="Location" width="16" height="16">
+                        <div>
+                            <strong>CÍMÜNK:</strong> 1039 BUDAPEST, KELTA UTCA 2.
+                        </div>
+                    </li>
+                    <li>
+                        <img src="images/icons/phone.svg" class="white-icon" alt="Phone" width="16" height="16">
+                        <div>
+                            <strong>TELEFON:</strong> +36 1 454-7600 / +36 30 686-2036
+                        </div>
+                    </li>
+                    <li>
+                        <img src="images/icons/envelope.svg" class="white-icon" alt="Envelope" width="16" height="16">
+                        <div>
+                            <strong>EMAIL:</strong> FELVETELI@UNI-MILTON.HU
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="contact-form-wrapper">
+                <h2>ÜZENETKÜLDÉS</h2>
+                <form action="#" method="POST" class="contact-form">
+                    <div class="form-row">
+                        <input type="text" placeholder="Név" required>
+                        <input type="email" placeholder="Email cím" required>
+                    </div>                    
+                    <div class="form-group">
+                        <textarea placeholder="Üzenet" rows="5" required></textarea>
+                    </div>
+                    <div class="form-consent">
+                        <label class="checkbox-container">
+                            <input type="checkbox" required>
+                            <span class="checkmark"></span>
+                            <span class="consent-text">
+                                <strong>Hozzájárulok az üzenetem elküldése során megadott személyes adataimnak az Adatkezelési tájékoztatóban meghatározott célból és ideig történő kezeléséhez.</strong>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="form-bottom">
+                        <div class="captcha-box">
+                            <label for="captcha-answer">15 + 5 = </label>
+                            <input type="text" id="captcha-answer" name="captcha-answer" class="captcha-input" aria-label="CAPTCHA eredmény" required>
+                        </div>
+                        <button type="submit" class="btn-send">ÜZENET KÜLDÉSE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-col footer-brand">
+                <img src="images/milton_alul.webp" alt="Milton Friedman Egyetem" class="footer-logo" width="220" height="70" loading="lazy">
+            </div>
+            <div class="footer-col footer-info">
+                <h3>Milton Friedman Egyetem – Jövő idő felsőfokon!</h3>
+                <ul>
+                    <li>OM-azonosító: FI 83995</li>
+                    <li>Bankszámlaszám: K&H 10403370 – 49535552 – 51491004</li>
+                    <li>Adószám: 18101436-2-41</li>
+                    <li>Felnőttképzési nyilvántartásba vételi szám: B/2020/006869</li>
+                </ul>
+            </div>
+            <div class="footer-col footer-links">
+                <h3>Kapcsolat</h3>
+                <ul>
+                    <li>Telefon: <a href="tel:+3614547600">+36 1 454-7600</a></li>
+                    <li><a href="#">Hallgatók tanulmányi kérdése</a></li>
+                    <li><a href="#">Felvételizők</a></li>
+                    <li><a href="#">Hivatalos megkeresés</a></li>
+                    <li>Cím: 1039 Budapest, Kelta utca 2.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>
+                    2020 © Milton Friedman Egyetem, Minden jog fenntartva! – 
+                    <a href="#">Adatvédelmi tájékoztató</a> – 
+                    <a href="#">Felhasználási feltételek, szabályzatok</a> – 
+                    Készítette: <a href="#" target="_blank">Wider Digital Kft.</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        let ticking = false;
+        let isScrolled = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(function() {
+                    const shouldBeScrolled = window.scrollY > 40;
+                    if (shouldBeScrolled !== isScrolled) {
+                        isScrolled = shouldBeScrolled;
+                        const header = document.querySelector('.main-header');
+                        if (header) {
+                            header.classList.toggle('scrolled', isScrolled);
+                        }
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');            
+            let currentSlide = 0;
+            let slideInterval;
+            const intervalTime = 6000;
+            function showSlide(index) {
+                const newIndex = (index + slides.length) % slides.length;
+                requestAnimationFrame(() => {
+                    slides.forEach(slide => slide.classList.remove('active'));
+                    dots.forEach(dot => dot.classList.remove('active'));
+                
+                    currentSlide = newIndex;
+                    if (slides[currentSlide]) slides[currentSlide].classList.add('active');
+                    if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+                });
+            }
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+                resetInterval(); 
+            }
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+                resetInterval();
+            }
+            function resetInterval() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, intervalTime);
+            }
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'), 10);
+                    showSlide(index);
+                    resetInterval();
+                });
+            });
+            slideInterval = setInterval(nextSlide, intervalTime);
+        });
+    </script>
+    <script src="CO2.js" defer></script>
+</body>
+</html>
